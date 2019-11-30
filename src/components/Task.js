@@ -11,7 +11,7 @@ export default props => {
     check = (
       <View style={StyleSheet.done}>
         <Icon name='check' size={20}
-          color={commonStyles.colors.secondary}></Icon>
+          color={'green'}></Icon>
       </View>
     )
   } else {
