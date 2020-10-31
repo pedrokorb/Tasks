@@ -1,50 +1,39 @@
-import React from 'react'
-import { 
-  StyleSheet,
-  Text,
-  View,
-  TouchableWithoutFeedback
-} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import moment from 'moment'
-import 'moment/locale/pt-br'
-import commonStyles from '../commonStyles'
+import React from 'react';
+import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import moment from 'moment';
+import 'moment/locale/pt-br';
+import commonStyles from '../commonStyles';
 
-export default props => {
-  let check = null
+export default (props) => {
+  let check = null;
   if (props.doneAt !== null) {
     check = (
       <View style={StyleSheet.done}>
-        <Icon name='check' size={20}
-          color={'green'}></Icon>
+        <Icon name="check" size={20} color={'green'}></Icon>
       </View>
-    )
+    );
   } else {
-    check = (
-      <View style={styles.pending}></View>
-    )
+    check = <View style={styles.pending}></View>;
   }
 
-  const descStyle = props.doneAt !== null ? { textDecorationLine: 'line-through' } : {}
+  const descStyle =
+    props.doneAt !== null ? {textDecorationLine: 'line-through'} : {};
 
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={() => props.toggleTask(props.id)}>
-        <View style={styles.checkContainer}>
-          {check}
-        </View>
+        <View style={styles.checkContainer}>{check}</View>
       </TouchableWithoutFeedback>
       <View>
-        <Text style={[styles.description, descStyle]}>
-          {props.desc}
-        </Text>
+        <Text style={[styles.description, descStyle]}>{props.desc}</Text>
         <Text style={styles.date}>
           {moment(props.estimateAt).locale('pt-br').format('ddd, D [de] MMMM')}
         </Text>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -83,4 +72,4 @@ const styles = StyleSheet.create({
     color: commonStyles.colors.subText,
     fontSize: 12,
   },
-})
+});
